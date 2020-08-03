@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type= "text/css" href = "assets/style.css">
+
 </head>
 <body>
     <!--  start of Navbar -->
@@ -24,14 +26,25 @@
       <!-- end of Navbar -->
       <!-- start of jumbotron -->
       <div class="jumbotron">
-        <a class="btnStart btn-primary btn-lg" href="#" role="button">Start</a>
-        <h2 class="display-4">Quiz show</h2>
-        <p class="lead">Will dislpay quiz here</p>
-        <hr class="my-4">
-        <p>will display score here.</p>
+        <div class="jumbo-header">
+          <a class="btnStart btn-primary btn-lg" href="#" role="button">Start</a>
+        </div>
+        <hr>
+        <div class="question-container">
+          <div class="question-area"></div>
+          <ul class = "button-area">
+            <li><button type="button" class="btn1 btn-dark">Dark</button></li>
+            <li><button type="button" class="btn2 btn-dark">Dark</button></li>
+            <li><button type="button" class="btn3 btn-dark">Dark</button></li>
+            <li><button type="button" class="btn4 btn-dark">Dark</button></li>
+          </ul> 
+        </div>
+        
+        <hr>
+        <p class = "result">display question result here.</p>
         
       </div>
 
-      
+<script src="script.js"></script>    
 </body>
 </html>

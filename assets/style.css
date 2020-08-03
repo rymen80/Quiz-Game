@@ -1,12 +1,23 @@
 
 .jumbotron {
     text-align: center;
+   
+}
+.jumbo-header {
+    font-family: 'Libre Baskerville', serif;
 }
 .time-label {
     padding-right: 20px;
 
 }
-textarea {
+#timer-text-area {
     resize: none;
-    
 }
+.question-area {
+    font-family: 'Libre Baskerville', serif;
+    font-size: large;
+}
+.button-area {
+    list-style-type: none;
+}
+
