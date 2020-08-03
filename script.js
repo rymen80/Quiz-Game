@@ -34,7 +34,12 @@ const $questionContainer = document.querySelector(".question-container");
 const $questionArea = document.querySelector(".question-area");
 const $buttonArea = document.querySelector(".button-area");
 const $results = document.querySelector(".results");
+const $btn1 = document.querySelector(".btn1");
+const $btn2 = document.querySelector(".btn2");
+const $btn3 = document.querySelector(".btn3");
+const $btn4 = document.querySelector(".btn4");
 
+let score = 0;
 // WHEN I answer a question
 // THEN I am presented with another question
 // WHEN I answer a question incorrectly
@@ -50,15 +55,22 @@ window.onload = function() {
     
 }
 $btnStart.addEventListener("click",takeQuiz);
+//event listeners for all possible answer buttons
+// $btn1.addEventListener("click",evaluateAnswer );
+// $btn2.addEventListener("click",evaluateAnswer );
+// $btn3.addEventListener("click",evaluateAnswer );
+// $btn4.addEventListener("click",evaluateAnswer );
 
+let timeLeft = 60;
 function takeQuiz() {
     startClock();
     DisplayQuestions();
 }
+
 function startClock() {
     $btnStart.style.visibility = "hidden";
     $buttonArea.style.visibility = "visible";
-    let timeLeft = 60;
+    
     const countDownInterval = setInterval(function(){
     $timerTextArea.value = timeLeft;
     // timeLeft = timeLeft - 1;
@@ -75,7 +87,22 @@ function DisplayQuestions() {
     $jumboHeader.textContent = "Quiz In Progress"
     questions.forEach((index,element,array) => {
         $questionArea.textContent = questions[0].Question
+        $btn1.textContent = questions[0].choices[0]
+        $btn2.textContent = questions[0].choices[1]
+        $btn3.textContent = questions[0].choices[2]
+        $btn4.textContent = questions[0].choices[3]
+        console.log(questions[0].answer);
 
 });
-
 }
+
+// questions.forEach((index,element,array) => {    
+//     $questionArea.textContent = questions[0].Question
+//     $btn1.textContent = questions[0].choices[0]
+//     $btn2.textContent = questions[0].choices[1]
+//     $btn3.textContent = questions[0].choices[2]
+//     $btn4.textContent = questions[0].choices[3]
+//     if(event === questions[0].answer) {
+//         $results.textContent = "Correct";
+//     }
+// });
