@@ -20,4 +20,9 @@
 .button-area {
     list-style-type: none;
 }
+.results {
+    text-align: center;
+    font-family: 'Libre Baskerville', serif;
+    font-size: large;
 
+}
