@@ -58,7 +58,7 @@ $btnStart.addEventListener("click",takeQuiz);
 
 
 // set time left to the amount of questions multiplied ny ten seconds. IE. 50 secs.
-let timeLeft = 2 * (questions.length);
+let timeLeft = 10 * (questions.length);
 console.log(timeLeft);
 
 function takeQuiz() {
@@ -139,13 +139,23 @@ function evaluateAnswer() {
         }
 
 }
+// function to input user score
+function enterScore() {
+    let scoreInput = document.createElement("textarea");
+    scoreInput.setAttribute("rows",1); 
+    scoreInput.setAttribute("cols",3);
+    $questionContainer.textContent = "You scored " + score + " enter intials to record score";
+    $questionContainer.appendChild(scoreInput);
+}
 // function that runs when quiz is over.
 function gameOver() {
-    timeLeft = 0;
+    
     $jumboHeader.textContent = "Quiz has ended"
     $buttonArea.style.visibility = "hidden";
     $questionArea.style.visibility = "hidden";
     $timeLabel.textContent = "";
     $results.textContent = "GAME OVER. \n Your final score is:  " + score;
+    timeLeft = 0;
+    enterScore();
 }
 
