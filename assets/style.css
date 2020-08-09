@@ -24,5 +24,7 @@
     text-align: center;
     font-family: 'Libre Baskerville', serif;
     font-size: large;
-
+}
+.initials-input {
+    resize: none;
 }
