@@ -50,9 +50,9 @@ let score = 0;
 // variable to store users score.
 let userScores = [];
 // variable to store user initials
-let userInitial = [];
+let userInitial = "";
 // a variable to store the users name and score.
-let userTag = [];
+let userTag = "";
 // set time left to the amount of questions multiplied ny ten seconds. IE. 50 secs.
 let timeLeft = 10 * questions.length;
 // hides the buttons and displays a messgage to begin quiz upon page load
@@ -83,7 +83,7 @@ function startClock() {
       $timeLabel.textContent = "Times Up!!";
 
       gameOver();
-      clearInterval(countDownInterval);
+      
     }
   }, 1000);
 }
@@ -145,10 +145,10 @@ function enterScore() {
   const $submitButton = document.querySelector(".submit-button");
   $submitButton.addEventListener("click", function () {
     if (initialsInput.value) {
-      userInitial.push(initialsInput.value);
-      userScores = userScores.concat(userInitial);
-      userTag = userScores[0] + userScores[2];
-      console.log(userTag);
+      userInitial += initialsInput.value;
+      userScores += "  " + userInitial;
+      
+      console.log(userScores);
     } else {
       alert("Must input Initials");
     }
@@ -157,26 +157,29 @@ function enterScore() {
 }
 // function to send user score and intials to local storage.
 function storeInfo() {
-    localStorage.setItem('userTag', JSON.stringify(userTag));
+    localStorage.setItem('scoreHistory', JSON.stringify(userTag));
 }
 // get scores form local storage to display
 function getScores() {
-    for (let i = 0; i < userTag.length; i++) {
-      const user = JSON.parse(localStorage.getItem("userTag"));
+    const highScore = JSON.parse(localStorage.getItem("scoreHistory"));
+    for (let i = 0; i < highScore.length; i++) {
       const userList = document.createElement("li");
-      userList.innerText = user[i];
+      userList.innerText = highScores[i];
       $results.appendChild(userList);
     }
   }
 
 // function that runs when quiz is over.
 function gameOver() {
+  clearInterval(countDownInterval);
   $jumboHeader.textContent = "Quiz has ended";
   $buttonArea.style.visibility = "hidden";
   $questionArea.style.visibility = "hidden";
   $timeLabel.textContent = "";
   $results.textContent = "GAME OVER. \n Your final score is:  " + score;
-  userScores.push(score);
+  userScores += score;
+  
+  
   timeLeft = 0;
   enterScore();
 }
