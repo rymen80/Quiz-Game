@@ -79,11 +79,10 @@ function startClock() {
     console.log(timeLeft);
     if (timeLeft <= 0) {
       timeLeft = 0;
+      clearInterval(countDownInterval);
       $timerTextArea.value = "--";
       $timeLabel.textContent = "Times Up!!";
-
       gameOver();
-      
     }
   }, 1000);
 }
@@ -118,7 +117,7 @@ function evaluateAnswer() {
   }
   count++;
   if (count > 4) {
-    gameOver();
+    timeLeft = 0;
   } else {
     $questionArea.textContent = questions[count].Question;
     $btn1.textContent = questions[count].choices[0];
@@ -146,8 +145,8 @@ function enterScore() {
   $submitButton.addEventListener("click", function () {
     if (initialsInput.value) {
       userInitial += initialsInput.value;
-      userScores += "  " + userInitial;
-      
+      userTag = score + "  " + userInitial;
+      userScores.push(userTag);
       console.log(userScores);
     } else {
       alert("Must input Initials");
@@ -157,8 +156,9 @@ function enterScore() {
 }
 // function to send user score and intials to local storage.
 function storeInfo() {
-    localStorage.setItem('scoreHistory', JSON.stringify(userTag));
+    localStorage.setItem('scoreHistory', JSON.stringify(userScores));
 }
+$highscoreButton.addEventListener('click', getScores);
 // get scores form local storage to display
 function getScores() {
     const highScore = JSON.parse(localStorage.getItem("scoreHistory"));
@@ -171,15 +171,14 @@ function getScores() {
 
 // function that runs when quiz is over.
 function gameOver() {
-  clearInterval(countDownInterval);
+  
   $jumboHeader.textContent = "Quiz has ended";
   $buttonArea.style.visibility = "hidden";
   $questionArea.style.visibility = "hidden";
   $timeLabel.textContent = "";
   $results.textContent = "GAME OVER. \n Your final score is:  " + score;
-  userScores += score;
-  
-  
-  timeLeft = 0;
   enterScore();
+  
+  
+  
 }
